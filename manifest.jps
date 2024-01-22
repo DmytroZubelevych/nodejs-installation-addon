@@ -98,7 +98,7 @@ onBeforeInit: /scripts/onBeforeInit.js
 onInstall:
   - install [${settings.nodeGroups}]:
       envName: ${settings.envName}
-      jps: logic2.jps?_r=${fn.random}
+      jps: logic.jps?_r=${fn.random}
       settings:
         nodeGroups: ${settings.nodeGroups}
         envName: ${settings.envName}
