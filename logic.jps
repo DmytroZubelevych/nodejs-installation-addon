@@ -131,7 +131,7 @@ actions:
       - if (response.out == "Non-supported"):
         - stopEvent:
             type: warning
-            message: Installation of Node.js® version higher than 16 is not supported because of glibc version lower tran 2.28.       
+            message: Installation of Node.js® version higher than 16 is not supported for the selected layer because of glibc version lower than 2.28. Please either use the Node.js® version 16 or consider upgrade to newer OS version for the selected layer.
     - cmd [${globals.masterId}]: |-
         if which microdnf &>/dev/null; then
             OS_PACKAGE_MANAGER="microdnf"
@@ -148,13 +148,11 @@ actions:
       user: root
     - uninstall
     - cmd [${targetNodes.nodeGroup}]: |-
-        if which microdnf &>/dev/null; then update-crypto-policies --set DEFAULT:SHA1; fi
         ${globals.osPackageManager} clean all
         NODEJS_MAJOR_VERSION=$(echo ${settings.minorVersion} | awk -F . '{print $1}')
-        rpm -i https://rpm.nodesource.com/pub_${NODEJS_MAJOR_VERSION}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm &&
-        ${globals.osPackageManager} install nodejs-${settings.minorVersion} -y --setopt=nodesource-nodejs.module_hotfixes=1 &&
+        curl -fsSL https://rpm.nodesource.com/setup_${NODEJS_MAJOR_VERSION}.x | bash - 
+        ${globals.osPackageManager} install nodejs-${settings.minorVersion} -y &&
         curl -sL https://dl.yarnpkg.com/rpm/yarn.repo > /etc/yum.repos.d/yarn.repo && ${globals.osPackageManager} -y install yarn && yum-config-manager --disable yarn nodesource-nsolid nodesource-nodejs
-        if which microdnf &>/dev/null; then update-crypto-policies --set DEFAULT; else true; fi
       user: root
     - cmd [${targetNodes.nodeGroup}]: |-
         wget ${baseUrl}/configs/nodejs -O /etc/sudoers.d/nodejs

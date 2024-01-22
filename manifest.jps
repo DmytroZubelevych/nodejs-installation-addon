@@ -14,22 +14,56 @@ targetNodes:
     - apache
     - apache2
     - apache2-ruby
+    - apache-lb
     - apache-python
     - apache-ruby
+    - couchbase
+    - dotnet
     - glassfish
     - glassfish3
     - glassfish4
+    - golang
+    - haproxy
+    - javaengine
+    - jenkins
+    - jenkins2
     - jetty
     - jetty6
+    - kubernetes
     - lemp
     - litespeedadc
     - litespeedphp
     - llsmp
+    - mariadb
+    - mariadb10
+    - mariadb-dockerized
+    - memcached
+    - memcached-dockerized
+    - mongodb
+    - mongodb-dockerized
+    - mysql
+    - mysql5
+    - nginx
+    - nginx-dockerized
     - nginxphp
     - nginxphp-dockerized
     - nginx-ruby
     - nginxruby
+    - opensearch
+    - opensearch1
     - payara
+    - perconadb
+    - postgres10
+    - postgres11
+    - postgres12
+    - postgres13
+    - postgres14
+    - postgres9
+    - postgresql
+    - redis
+    - redis6
+    - springboot
+    - storage
     - tomcat
     - tomcat6
     - tomcat7
@@ -38,8 +72,9 @@ targetNodes:
     - tomcat9
     - tomee
     - tomee-dockerized
+    - varnish
+    - varnish-dockerized
     - wildfly
-    - springboot
 
 settings:
   main:
